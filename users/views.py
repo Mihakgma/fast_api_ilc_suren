@@ -1,9 +1,10 @@
 from fastapi import APIRouter
 
 from users.schemas import CreateUser
+from users import crud
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.post("/", response_model=CreateUser)
+@router.post("/")
 def create_user(user: CreateUser):
-    return user
+    return crud.create_user(user_in=user)
